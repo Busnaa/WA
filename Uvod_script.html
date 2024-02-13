@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>počty1</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        window.addEventListener("DOMContentLoaded", (event) => {
+           
+        let btn = document.getElementById('calc');
+        
+        btn.addEventListener('click', (e) => {
+            console.log(e);
+            x = Number(document.getElementById('x').value);
+            y = Number(document.getElementById('y').value);  
+            z = Number(document.getElementById('z').value);  
+            document.getElementById('res').innerHTML=x+y+z;
+
+            console.log(e);
+            x = Number(document.getElementById('x').value);
+            y = Number(document.getElementById('y').value);  
+            z = Number(document.getElementById('z').value);  
+
+            let p = (x+y+z)/2;
+
+            let i = (p*(p-x)*(p-y)*(p-z));
+
+            document.getElementById('res2').innerHTML=Math.sqrt(i);
+
+        });
+
+        
+    }); //DOMContentLoaded       
+    </script>
+</head>
+<body>
+   <form>
+<label for="x">První číslo: </label>
+<input type="text" name="x" id="x" value="3"><BR>
+<label for="y">druhé číslo: </label>
+<input type="text" name="y" id="y" value="4"><BR>
+<label for="z">druhé číslo: </label>
+<input type="text" name="z" id="z" value="5"><BR>
+
+<input type="button"  id="calc" value="Spočti"><BR>
+     
+
+   </form> 
+
+   <h2>Obvod</h2>
+  <p id="res"></p><br>
+  <h2>Obsah</h2>
+  <p id="res2"></p><br>
+
+</body>
+</html>
