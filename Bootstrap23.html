@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Navbar Example</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body{
+        color: aliceblue;
+    }
+    .flex-item {
+      height: 200px; 
+    }
+    
+    .no-gutters {
+      margin-right: 0;
+      margin-left: 0;
+    }
+    #mySquare {
+    background: rgb(251, 176, 59); 
+  }
+  #Square {
+    background: rgb(241, 90, 37);
+  }
+  #Square2 {
+    background: rgb(194, 39, 45);
+  }
+  #Side {
+    background: rgb(1, 168, 158);
+    width: 25%;
+  }
+  #foot {
+    background: rgb(178, 150, 199);
+  }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(0, 113, 189);">
+    <a class="navbar-brand" href="#" style="margin-left: 200px;">Logo</a>
+
+  
+  <form class="form-inline my-2 my-lg-0 ml-auto" style="margin-right: 150px;" >
+    <input class="form-control mr-sm-2" type="search" placeholder="Hledat" aria-label="Search">
+    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Hledat</button>
+  </form>
+</nav>
+<br>
+
+
+<div class="container">
+    <div class="d-flex">
+      
+      <div class="p-2 flex-grow-1">
+  
+          <div class="row no-gutters">
+              <div id="mySquare" class="col flex-item p-2 mr-1">B</div>
+              <div id="mySquare" class="col flex-item p-2 mr-1">B</div>
+              <div id="mySquare" class="col flex-item p-2  mr-1">B</div>
+              <div id="mySquare" class="col flex-item p-2">B</div>
+            </div>
+            
+            <div class="row mt-3 no-gutters">
+              <div id="Square" class="col flex-item p-2 mr-1">B</div>
+              <div id="Square" class="col flex-item p-2 mr-1">B</div>
+              <div id="Square" class="col flex-item p-2">B</div>
+            </div>
+            <div class="row mt-3 no-gutters">
+              <div id="Square2" class="col flex-item p-2 mr-1">B</div>
+              <div id="Square2" class="col flex-item p-2">B</div>
+            </div>
+      </div>
+      
+      <div id="Side" class="p-2 flex-grow-0 mt-2 mb-2" >S</div>
+    </div>
+  </div>
+  <br>
+  <footer class=" text-white py-4" style="background-color: rgb(102, 46, 145);
+  ">
+      <div class="container">
+        <div class="row justify-content-center" style="width: 80%; justify-content: center; margin: auto;">
+          
+          <div class="col-4">
+            <div id="foot" class="text-center p-4">B</div>
+          </div>
+          
+          <div class="col-4">
+            <div id="foot" class="text-center p-4">B</div>
+          </div>
+          
+          <div class="col-4">
+            <div id="foot" class="text-center p-4">B</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+
+
+
+</body>
+</html>
