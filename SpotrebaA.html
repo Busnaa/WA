@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>počty1</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script>
+        window.addEventListener("DOMContentLoaded", (event) => {
+            let btn = document.getElementById('calc');
+        
+            btn.addEventListener('click', (e) => {
+                let delka_t = Number(document.getElementById('x').value);
+                let spotreba = Number(document.getElementById('y').value);  
+                let cenaPHM = Number(document.getElementById('z').value);  
+                let pocetosob = Number(document.getElementById('t').value);  
+
+                let cenat = ((spotreba / 100) * delka_t) * cenaPHM;
+                
+                let celkovasp = (spotreba / 100) * delka_t;
+                let cenaos = ((spotreba / 100) * delka_t) * cenaPHM;
+
+
+                document.getElementById('res').innerHTML = cenat;
+                document.getElementById('res2').innerHTML = celkovasp;
+                document.getElementById('res3').innerHTML = cenat/pocetosob;
+            });
+        });
+    </script>
+</head>
+<body>
+   <form>
+       <label for="x">Délka trasy: </label>
+       <input type="text" name="x" id="x" value="3"><br>
+       <label for="y">Spotřeba: </label>
+       <input type="text" name="y" id="y" value="4"><br>
+       <label for="z">Cena Pohonnych hmot: </label>
+       <input type="text" name="z" id="z" value="5"><br>
+       <label for="t">Počet osob: </label>
+       <input type="text" name="t" id="t" value="5"><br>
+
+       <br>
+       <input type="button"  id="calc" value="Spočti"><br>
+   </form> 
+
+   <h3>Cena trasy</h3>
+   <p id="res"></p><br>
+   <h3>Celková spotřeba</h3>
+   <p id="res2"></p><br>
+   <h3>Cena za jednu osobu</h3>
+   <p id="res3"></p><br>
+</body>
+</html>
