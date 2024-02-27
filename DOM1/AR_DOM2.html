@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Hello DOM</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("myBtn").onclick = function() {
+          document.querySelector("p:first-of-type").style.color = "red";
+        };
+
+        document.getElementById("myBtn2").onclick = function() {
+          var firstParagraph = document.querySelector("p:first-of-type");
+          var boldText = firstParagraph.querySelector("strong");
+          if (boldText) {
+            boldText.parentNode.removeChild(boldText);
+          }
+        };
+
+        document.getElementById("myBtn3").onclick = function() {
+          var img = document.createElement("img");
+          img.src = "https://fsx3.itstep.org/api/v1/files/c2WRlRlO-c0tj6BVF6LMDkBfyoT9uScQ";
+          document.body.insertBefore(img, document.querySelector("p:first-of-type").nextSibling);
+        };
+
+        document.getElementById("myBtn4").onclick = function() {
+          var firstParagraph = document.querySelector("p:first-of-type");
+          firstParagraph.parentNode.removeChild(firstParagraph);
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <pre>
+      Změna barvy textu v prvním odstavci
+      odebrání tučného textu z prvého odstavce 
+      Přidání obrázku (https://fsx3.itstep.org/api/v1/files/c2WRlRlO-c0tj6BVF6LMDkBfyoT9uScQ) za první odstavec
+      Odstranění prvního odstavce
+    </pre>
+                                  
+    <input type="button" value="Změna barvy" id="myBtn">
+    <input type="button" value="odebrání tučného textu z prvého odstavce " id="myBtn2">
+    <input type="button" value="Přidání obrázku" id="myBtn3">
+    <input type="button" value="Odstranění prvního odstavce" id="myBtn4">
+  
+    <p>
+      Lorem <strong>ipsum</strong> dolor sit amet consectetuer eu mauris pretium et Aenean. Malesuada at Phasellus libero enim purus nulla et feugiat faucibus Integer. Et laoreet In ac dui eget Curabitur accumsan leo Nunc felis. Leo Duis non netus augue Suspendisse massa at scelerisque Nulla eros. Eu platea a est In ultrices augue nisl libero id justo. Tempus Aenean tincidunt Quisque lacinia ornare vitae quis feugiat nec ac. Aliquet Phasellus iaculis.
+    </p>
+    
+    <p>
+      Lorem  dolor sit amet consectetuer eu mauris pretium et Aenean. Malesuada at Phasellus libero enim purus nulla et feugiat faucibus Integer. Et laoreet In ac dui eget Curabitur accumsan leo Nunc felis. Leo Duis non netus augue Suspendisse massa at scelerisque Nulla eros. Eu platea a est In ultrices augue nisl libero id justo. Tempus Aenean tincidunt Quisque lacinia ornare vitae quis feugiat nec ac. Aliquet Phasellus iaculis.
+    </p>
+
+  </body>
+</html>
