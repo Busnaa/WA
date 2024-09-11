@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidování vypité kávy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:disabled {
+            background-color: #cccccc;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .form-container {
+                width: 90%;
+            }
+
+            button {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            .form-group input, .form-group select {
+                font-size: 18px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Záznam o vypité kávě</h2>
+    <form id="coffee-form">
+        <div class="form-group">
+            <label for="name">Jméno:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="drinkType">Typ nápoje:</label>
+            <select id="drinkType" name="drinkType" required>
+                <option value="coffee">Káva</option>
+                <option value="tea">Čaj</option>
+                <option value="juice">Džus</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Množství (ml):</label>
+            <input type="number" id="quantity" name="quantity" min="0" required>
+        </div>
+        <button type="submit">Odeslat</button>
+    </form>
+
+    <div id="result"></div>
+    <button id="showDrinks">Ukázat záznamy</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("coffee-form");
+        const resultDiv = document.getElementById("result");
+        const showDrinksBtn = document.getElementById("showDrinks");
+
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const drinkType = document.getElementById("drinkType").value;
+            const quantity = document.getElementById("quantity").value;
+
+            if (name === "" || quantity === "" || quantity <= 0) {
+                alert("Vyplňte všechna pole správně.");
+                return;
+            }
+
+            // Vytvoříme AJAX požadavek pro odeslání dat
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://ajax1.lmsoft.cz/procedure.php?cmd=saveDrinks", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.withCredentials = true; // Přidáme autentizaci
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    resultDiv.innerHTML = "<p>Data byla úspěšně odeslána!</p>";
+                    form.reset();
+                } else {
+                    resultDiv.innerHTML = `<p>Došlo k chybě při odesílání. Status: ${xhr.status}</p>`;
+                }
+            };
+
+            const params = `name=${encodeURIComponent(name)}&drinkType=${encodeURIComponent(drinkType)}&quantity=${encodeURIComponent(quantity)}`;
+            xhr.send(params);
+        });
+
+        // Zobrazení seznamu vypité kávy po kliknutí na tlačítko
+        showDrinksBtn.addEventListener("click", function () {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://ajax1.lmsoft.cz/procedure.php?cmd=listDrinks", true);
+            xhr.withCredentials = true; // Přidáme autentizaci
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    const drinks = JSON.parse(xhr.responseText);
+                    let output = "<h3>Seznam vypitých nápojů</h3>";
+                    drinks.forEach(function (drink) {
+                        output += `<p>${drink.name} vypil ${drink.quantity} ml ${drink.drinkType}</p>`;
+                    });
+                    resultDiv.innerHTML = output;
+                } else {
+                    resultDiv.innerHTML = `<p>Došlo k chybě při načítání dat. Status: ${xhr.status}</p>`;
+                }
+            };
+
+            xhr.send();
+        });
+    });
+</script>
+
+</body>
+</html>
